@@ -1,0 +1,28 @@
+@startuml classes_dominio
+title Diagrama de Classe de Domínio
+
+class Cinema {
+    id: int
+    nome: str
+    cidade: str
+    capacidade: int
+}
+
+class Filme {
+    id: int
+    titulo: str
+    genero: str
+    diretor: str
+}
+
+class Sessao {
+    id: int
+    data: str
+    horario: str
+    sala: str
+    publico: int
+}
+
+Cinema "1" --> "0..*" Sessao : realiza
+Filme  "1" --> "0..*" Sessao : exibido em
+@enduml

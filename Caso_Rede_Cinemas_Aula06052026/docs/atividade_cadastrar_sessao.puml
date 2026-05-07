@@ -1,0 +1,17 @@
+@startuml atividade_cadastrar_sessao
+title Diagrama de Atividade: Cadastrar Sessão
+
+start
+:Funcionário informa cinema, filme,\ndata, horário e sala;
+if (Cinema existe?) then (sim)
+    if (Filme existe?) then (sim)
+        :Salvar sessão no banco;
+        :Exibir "Sessão cadastrada!";
+    else (não)
+        :Exibir erro: filme não encontrado;
+    endif
+else (não)
+    :Exibir erro: cinema não encontrado;
+endif
+stop
+@enduml

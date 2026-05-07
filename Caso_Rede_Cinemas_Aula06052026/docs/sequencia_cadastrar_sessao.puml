@@ -1,0 +1,21 @@
+@startuml sequencia_cadastrar_sessao
+title Diagrama de Sequência: Cadastrar Sessão
+
+actor Funcionario
+participant SessaoView
+participant SessaoController
+participant SessaoService
+participant SessaoRepository
+database SQLite
+
+Funcionario    -> SessaoView       : informa dados da sessão
+SessaoView     -> SessaoController : cadastrar(dados)
+SessaoController -> SessaoService  : cadastrar(id_cinema, id_filme, data, horario, sala)
+SessaoService  -> SessaoRepository : salvar(sessao)
+SessaoRepository -> SQLite         : INSERT INTO sessoes
+SQLite         --> SessaoRepository : OK
+SessaoRepository --> SessaoService : OK
+SessaoService  --> SessaoController : sucesso
+SessaoController -> SessaoView     : mensagem("Sessão cadastrada!")
+SessaoView     -> Funcionario      : exibe confirmação
+@enduml

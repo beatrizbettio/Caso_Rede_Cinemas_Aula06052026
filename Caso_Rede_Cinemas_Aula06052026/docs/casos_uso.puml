@@ -1,0 +1,21 @@
+@startuml casos_uso
+left to right direction
+title Caso Rede de Cinemas
+
+actor "Funcionário /\nAdministrador" as Admin
+actor "Espectador" as Esp
+
+rectangle "Sistema Rede de Cinemas" {
+    usecase "Cadastrar Cinema"         as UC1
+    usecase "Cadastrar Filme"          as UC2
+    usecase "Cadastrar Sessão"         as UC3
+    usecase "Registrar Público"        as UC4
+    usecase "Listar Filmes em Cartaz"  as UC5
+}
+
+Admin --> UC1
+Admin --> UC2
+Admin --> UC3
+Admin --> UC4
+Esp   --> UC5
+@enduml

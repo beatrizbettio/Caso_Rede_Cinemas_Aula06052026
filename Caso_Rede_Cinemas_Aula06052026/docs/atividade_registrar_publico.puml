@@ -1,0 +1,12 @@
+@startuml atividade_registrar_publico
+title Diagrama de Atividade: Registrar Público
+start
+:Funcionário informa ID da sessão\ne quantidade de público;
+if (Público >= 0?) then (sim)
+    :Atualizar público da sessão no banco;
+    :Exibir "Público registrado!";
+else (não)
+    :Exibir erro: valor inválido;
+endif
+stop
+@enduml

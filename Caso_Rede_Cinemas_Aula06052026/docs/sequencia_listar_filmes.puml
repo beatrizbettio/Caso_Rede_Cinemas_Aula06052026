@@ -1,0 +1,21 @@
+@startuml sequencia_listar_filmes
+title Diagrama de Sequência: Listar Filmes em Cartaz
+
+actor Espectador
+participant FilmeView
+participant FilmeController
+participant FilmeService
+participant FilmeRepository
+database SQLite
+
+Espectador   -> FilmeView       : informa id_cinema
+FilmeView    -> FilmeController : listar_por_cinema(id_cinema)
+FilmeController -> FilmeService : listar_por_cinema(id_cinema)
+FilmeService -> FilmeRepository : buscar_por_cinema(id_cinema)
+FilmeRepository -> SQLite       : SELECT filmes JOIN sessoes WHERE id_cinema=?
+SQLite       --> FilmeRepository : lista de filmes
+FilmeRepository --> FilmeService : List[Filme]
+FilmeService --> FilmeController : List[Filme]
+FilmeController -> FilmeView    : mostrar(filmes)
+FilmeView    -> Espectador      : exibe filmes em cartaz
+@enduml

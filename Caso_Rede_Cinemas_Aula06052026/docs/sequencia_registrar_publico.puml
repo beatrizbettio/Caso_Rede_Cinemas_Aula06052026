@@ -1,0 +1,22 @@
+@startuml sequencia_registrar_publico
+title Diagrama de Sequência: Registrar Público
+
+actor Funcionario
+participant SessaoView
+participant SessaoController
+participant SessaoService
+participant SessaoRepository
+database SQLite
+
+Funcionario    -> SessaoView       : informa id_sessao e publico
+SessaoView     -> SessaoController : registrar_publico(id, publico)
+SessaoController -> SessaoService  : registrar_publico(id, publico)
+SessaoService  -> SessaoService    : valida publico >= 0
+SessaoService  -> SessaoRepository : atualizar_publico(id, publico)
+SessaoRepository -> SQLite         : UPDATE sessoes SET publico=?
+SQLite         --> SessaoRepository : OK
+SessaoRepository --> SessaoService : OK
+SessaoService  --> SessaoController : sucesso
+SessaoController -> SessaoView     : mensagem("Público registrado!")
+SessaoView     -> Funcionario      : exibe confirmação
+@enduml
